@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Sample Multi-page Editor"
+            extensions="mpe"
+            icon="icons/sample.gif"
+            contributorClass="jimpleeditor.editors.MultiPageEditorContributor"
+            class="jimpleeditor.editors.MultiPageEditor"
+            id="jimpleeditor.editors.MultiPageEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Sample Wizards"
+            id="JimpleEditor">
+      </category>
+      <wizard
+            name="Multi-page Editor file"
+            icon="icons/sample.gif"
+            category="JimpleEditor"
+            class="jimpleeditor.wizards.SampleNewWizard"
+            id="jimpleeditor.wizards.SampleNewWizard">
+      </wizard>
+   </extension>
+   <extension point="org.eclipse.debug.core.launchConfigurationTypes">
+    <launchConfigurationType
+        name="Jimple launch"
+        delegate="jimpleeditor.launch.SampleLaunchConfiguration"
+        modes="run, debug"               
+        id="jimpleeditor.launch.SampleLaunchConfiguration">        
+    </launchConfigurationType>
+</extension>
+<extension
+    point="org.eclipse.debug.ui.launchShortcuts">
+    <shortcut
+        class="jimpleeditor.launch.LaunchShortcut"
+        icon="icons/sample.gif"
+        id="jimpleeditor.launch.LaunchShortcut"
+        label="Sample Shortcut"
+        modes="run, debug">
+        <contextualLaunch>
+            <enablement>
+                <with
+                    variable="selection">
+                    <count
+                        value="+">
+                    </count>
+                </with>
+            </enablement>
+        </contextualLaunch>
+    </shortcut>
+</extension>
+<extension
+    point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+    <launchConfigurationTabGroup
+        class="jimpleeditor.launch.SampleTabGroup"
+        id="jimpleeditor.launch.SampleTabGroup"
+        type="jimpleeditor.launch.SampleLaunchConfiguration">
+    </launchConfigurationTabGroup>
+</extension> 
+<extension
+        point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+    <launchConfigurationTypeImage
+            id="com.example.ui.launch.launchconfigurationtypeimage"
+            configTypeID="jimpleeditor.launch.SampleLaunchConfiguration"
+            icon="icons/sample.gif">
+    </launchConfigurationTypeImage>
+</extension> 
+</plugin>
